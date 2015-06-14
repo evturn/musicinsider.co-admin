@@ -8,8 +8,9 @@
  * modules in your project's /lib directory.
  */
 
-var _ = require('underscore');
-
+var _ = require('underscore'),
+		keystone = require('keystone'),
+		importRoutes = keystone.importer(__dirname);
 
 /**
 	Initialises the standard view locals
@@ -61,11 +62,12 @@ exports.flashMessages = function(req, res, next) {
 
 exports.requireUser = function(req, res, next) {
 	
-	if (!req.user) {
-		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/keystone/signin');
-	} else {
+	if (!req.user && req.user.isAdmin) {
+		console.log('Cool, quesadillas are in the fridge');
 		next();
+	} else {
+		console.log('Nah dog');
+		res.redirect('/signin');
 	}
 	
 };

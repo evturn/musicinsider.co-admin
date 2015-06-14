@@ -7,18 +7,7 @@
 		<title>Music Insider</title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="/styles/site.css" rel="stylesheet">
-		
-		{{!-- This file provides the default styling for the KeystoneJS Content Editor 
-			- only renders when user is logged in and admin--}}
-		{{{isAdminEditorCSS user}}}
-		
-		{{!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-		//- Safely remove this block if you are not targeting IE8 --}}
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" />
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" />
-		<![endif]-->
-		
+		{{{isAdminEditorCSS user}}}		
 	</head>
 	<body>
 		<div id="header">
@@ -53,10 +42,6 @@
 			</div>
 		</div>
 		<div id="body">
-			<!--
-				Flash messages allow you to display once-off status messages to users, e.g. form
-				validation errors, success messages, etc
-			-->
 			{{#if messages}}
 			<div id="flash-messages" class="container">
 				{{#if messages.info}}
@@ -86,20 +71,10 @@
 		</div>
 		<div class="container">
 			<div id="footer">
-				<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
+				<p>Powered by <a href="Cheeseburgers" target="_blank">KeystoneJS</a>.</p>
 			</div>
 		</div>
-		{{!--
-			//- jQuery 1.11.1 is included by default, and required by both Bootstrap
-			//- and the KeystoneJS Content Editor. If you are not targeting IE8,
-			//- you can upgrade to 2.1.3 (also bundled) for better performance.
-		--}}
 		<script src="/js/jquery/jquery-1.11.2.min.js"></script>
-		{{!--
-			//- Customise which Bootstrap javascript files are served by including
-			//- them specifically here, instead of bootstrap-3.3.4.min.js
-		--}}
-		<script src="/js/bootstrap/bootstrap-3.3.4.min.js"></script>
 		{{{isAdminEditorJS user}}}
 	</body>
 </html>
