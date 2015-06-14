@@ -13,7 +13,7 @@ var handlebars = require('express-handlebars');
 keystone.init({
 
 	'name': 'Music Insider',
-	'brand': 'Music Insider',
+	'brand': 'Admin',
 	
 	'sass': 'public',
 	'static': 'public',
@@ -32,15 +32,18 @@ keystone.init({
 	'emails': 'templates/emails',
 	
 	'auto update': true,
+	'mongo': process.env.MONGO_URI || 'mongodb://localhost/miDB',
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': '0!/se&$4*emwc[To6Z+2nz6?v-FFGqC7OyX-r~3-`rS;o8?)*R.c."FFkJ/uu1"<'
+	'cookie secret': process.env.COOKIE_SECRET || '0!/ze&$4*emwc[To6Z+2nz6?v-FFGqC7OyX-r~3-`rS;o8?)*R.c."FFkJ/uu1"<'
 
 });
 
 // Load your project's Models
-
+var User = require('./models/User');
+var Post = require('./models/Post');
+var PostCategory = require('./models/PostCategory');
 keystone.import('models');
 
 // Setup common locals for your templates. The following are required for the

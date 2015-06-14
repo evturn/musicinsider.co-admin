@@ -6,44 +6,55 @@
  * Alternatively, you can export a custom function for the update:
  * module.exports = function(done) { ... }
  */
+var keystone = require('keystone'),
+	User = keystone.list('User');
 
-exports.create = {
-	User: [
-		{ 'name.first': 'Admin', 'name.last': 'User', email: 'ev@ev.com', password: 'ev', isAdmin: true }
-	]
+
+
+module.exports = function(done) {
+	new User.model({
+			'name.first': 'Admin',
+			'name.last': 'User',
+			email: 'ev@ev.com',
+			password: 'ev',
+			isAdmin: true
+		})
+		.save(done);
 };
 
-/*
 
 // This is the long-hand version of the functionality above:
 
-var keystone = require('keystone'),
-	async = require('async'),
-	User = keystone.list('User');
-
-var admins = [
-	{ email: 'user@keystonejs.com', password: 'admin', name: { first: 'Admin', last: 'User' } }
-];
-
-function createAdmin(admin, done) {
-	
-	var newAdmin = new User.model(admin);
-	
-	newAdmin.isAdmin = true;
-	newAdmin.save(function(err) {
-		if (err) {
-			console.error("Error adding admin " + admin.email + " to the database:");
-			console.error(err);
-		} else {
-			console.log("Added admin " + admin.email + " to the database.");
-		}
-		done(err);
-	});
-	
-}
-
-exports = module.exports = function(done) {
-	async.forEach(admins, createAdmin, done);
+exports.create = {
+	User: [
+		{ 'name.first': 'Admin', 'name.last': 'User', email: 'ev@ev.com', password: 'ev', isAdmin: true, canAccessKeystone: true }
+	]
 };
+	async = require('async'),
 
-*/
+// var admins = [
+// 		{ 'name.first': 'Admin', 'name.last': 'User', email: 'ev@ev.com', password: 'ev', isAdmin: true, canAccessKeystone: true }
+// 	];
+
+// function createAdmin(admin, done) {
+	
+// 	var newAdmin = new User.model(admin);
+	
+// 	newAdmin.isAdmin = true;
+// 	newAdmin.save(function(err) {
+// 		if (err) {
+// 			console.error("Error adding admin " + admin.email + " to the database:");
+// 			console.error(err);
+// 		} else {
+// 			console.log("Added admin " + admin.email + " to the database.");
+// 		}
+// 		done(err);
+// 	});
+	
+// }
+
+// exports = module.exports = function(done) {
+// 	async.forEach(admins, createAdmin, done);
+// };
+
+
